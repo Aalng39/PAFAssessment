@@ -58,6 +58,7 @@ public class Order {
 	public void setLineItems(List<LineItem> lineItems) { this.lineItems = lineItems; }
 	public void addLineItem(LineItem lineItem) { this.lineItems.add(lineItem); }
 
+	
 	public JsonObject toJSON() {
         List<JsonObject> js = this.getLineItems()
                 .stream()

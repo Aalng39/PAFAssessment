@@ -46,3 +46,12 @@ CREATE TABLE lineItems(
     PRIMARY KEY(orderId, item, quantity)
 );
 
+CREATE TABLE orderStatus(
+    orderId VARCHAR(8) not null,
+    delivery_id VARCHAR(8) not null,
+    status VARCHAR(128) not null,
+    statusUpdate DATE,
+
+    PRIMARY KEY(orderId)
+);
+
