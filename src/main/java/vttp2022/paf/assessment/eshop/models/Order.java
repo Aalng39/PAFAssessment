@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+
 // DO NOT CHANGE THIS CLASS
 public class Order {
 
@@ -54,5 +57,22 @@ public class Order {
 	public List<LineItem> getLineItems() { return this.lineItems; }
 	public void setLineItems(List<LineItem> lineItems) { this.lineItems = lineItems; }
 	public void addLineItem(LineItem lineItem) { this.lineItems.add(lineItem); }
+
+	public JsonObject toJSON() {
+        List<JsonObject> js = this.getLineItems()
+                .stream()
+                .map(c -> c.toJSON())
+                .toList();
+
+        return Json.createObjectBuilder()
+                .add("orderId", this.getOrderId())
+                .add("name", getName())
+                .add("address", getAddress())
+                .add("email", getEmail())
+                .add("lineItems", js.toString())
+				.add("createdBy", getOrderDate().toString())
+                .build();
+    }
 }
+
 
